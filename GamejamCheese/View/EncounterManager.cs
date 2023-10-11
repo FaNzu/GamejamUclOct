@@ -106,30 +106,33 @@ namespace GamejamCheese.View
             // effects apply
 
 
-            // damage apply
+            // player damage apply
 
 
 
             // is enemy dead check?
-				/*
-				 * sudo:
-				 * if enemy's hp <=0: end encounter
-				 * else: enemies action ( dmg to hp,O2,Fuel )
-				*/
+            /*
+             * sudo:
+             * if enemy's hp <=0: end encounter
+             * else: enemies action ( dmg to hp,O2,Fuel )
+            */
 
-
+            int EnemyRoll = random.Next(1, 10);
+            Console.WriteLine("the enemy is attacking");
+            Console.WriteLine("you take:" + EnemyRoll + " Damage!");
+			GamejamCheese.Models.Player.HP - EnemyRoll;
 
 
             // if dead, drop loot
-			 /*
-			  * roll on the lootTable
-			  * drop item
-			  * if inventory is free, pickup
-			  * else ask to swap item
-			 */
+            /*
+             * roll on the lootTable
+             * drop item
+             * if inventory is free, pickup
+             * else ask to swap item
+            */
 
 
-			
+
 
 
 
