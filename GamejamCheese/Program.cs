@@ -1,4 +1,5 @@
-﻿using GamejamCheese.View;
+﻿using GamejamCheese.Controller;
+using GamejamCheese.View;
 using Spectre.Console;
 using GamejamCheese.Models;
 namespace GamejamCheese
@@ -7,7 +8,7 @@ namespace GamejamCheese
 	{
 		static void Main(string[] args)
 		{
-
+			EncounterManager.show();
 
 			//var image = new CanvasImage("../../../View/Pictures/spaceship1.png");
 			//image.MaxWidth = 25;
