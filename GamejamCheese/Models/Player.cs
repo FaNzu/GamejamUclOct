@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GamejamCheese.Models.Inventory;
 
 namespace GamejamCheese.Models
 {
-	public class Player
+    public class Player
 	{
 		public int HP { get; set; }
-		public List<Item> PlayerInventory { get; set; }
+		public Item[] PlayerInventory { get; set; }
+		public Item[] PlayerGearSlots { get; set; } 
 		public int O2 { get; set; }
-		public int fuel { get; set; }
+		public int Fuel { get; set; }
+		public int BaseDamage { get; set; }
+
 		//gear slots
 
 		public Player() { }
-		public Player(int hP, List<Item> playerInventory, int o2, int fuel)
+		public Player(int hP, int o2, int fuel)
 		{
 			HP = hP;
-			PlayerInventory = playerInventory;
+			PlayerInventory = new Item[10];
 			O2 = o2;
-			this.fuel = fuel;
+			Fuel = fuel;
+			PlayerGearSlots = new Item[5];
+		}
+
+		public void DoDamage()
+		{
+
 		}
 	}
 }
