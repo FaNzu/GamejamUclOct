@@ -1,1 +1,4 @@
-﻿
+﻿Item 2000
+Type Gear
+GearSlot head
+Effect +HP
