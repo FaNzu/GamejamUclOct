@@ -17,7 +17,7 @@ namespace GamejamCheese.Models
 
 
 		//Constructor for normal items
-		public Item(TypeOfItem itemType, string name, string discription, int value, ItemEffect itemEffect)
+		public Item(TypeOfItem itemType, string name, string discription, int value, ItemEffect? itemEffect)
 		{
 			ItemType = itemType;
 			Name = name;
@@ -52,6 +52,7 @@ namespace GamejamCheese.Models
 		IncreaseHP,
 		IncreaseBaseDamage,
 		HealAmountHP,
+		RestoreAmountO2,
 		RestoreFuel,
 		LessO2MoreDamage,
 		LessFuelMoreHP
