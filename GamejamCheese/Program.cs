@@ -2,6 +2,8 @@
 using GamejamCheese.View;
 using Spectre.Console;
 using GamejamCheese.Models;
+using GamejamCheese.Data;
+
 namespace GamejamCheese
 {
 	internal class Program
@@ -17,8 +19,17 @@ namespace GamejamCheese
 			//EncounterManager encounterManager = new EncounterManager();
 			//encounterManager.Encounter(EncounterType.Alien);
 
-			Section section = new Section("Mars", "This planet has no form of life", "Dig a hole", null, Modifier.ZeroOxygen);
-			SectionController.NewSection(section);
+			//For at teste section view
+			//Section section = new Section("Mars", "This planet has no form of life", "Dig a hole", null, Modifier.ZeroOxygen);
+			//SectionController.NewSection(section);
+
+			//For at teste item view
+			//for (int i = 0; i < 10; i++)
+			//{
+			//	Player.PlayerInventory[i] = DataInitialiser.GenerateItems().ToArray()[i]; 
+			//}
+			//InventoryController.Show();
+
 			Console.ReadLine();
 		}
 	}
