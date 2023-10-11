@@ -1,5 +1,4 @@
 ﻿using GamejamCheese.Models;
-using GamejamCheese.Models.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;

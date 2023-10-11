@@ -13,8 +13,11 @@ namespace GamejamCheese
 			//image.MaxWidth = 25;
 			//AnsiConsole.Write(image);
 			//AnsiConsole.Markup("[underline bold red]Hello[/] World!");
-			EncounterManager encounterManager = new EncounterManager();
-			encounterManager.Encounter(EncounterType.Alien);
+			//EncounterManager encounterManager = new EncounterManager();
+			//encounterManager.Encounter(EncounterType.Alien);
+			SectionView section = new SectionView();
+			section.StartMenu();
+			Console.ReadLine();
 		}
 	}
 }

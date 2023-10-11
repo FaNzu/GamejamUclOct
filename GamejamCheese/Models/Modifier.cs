@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 namespace GamejamCheese.Models
 {
 
-	public enum Modifiers
+	public enum Modifier
 	{
-
+		LowOxygen,
+		ZeroOxygen,
+		HighTemp,
+		LowTemp,
+		LowGravity,
+		HighGravity,
+		NormalGravity
 	}
 }
