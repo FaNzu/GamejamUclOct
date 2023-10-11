@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GamejamCheese.Models
 {
 
-	enum Modifiers
+	public enum Modifiers
 	{
 
 	}
