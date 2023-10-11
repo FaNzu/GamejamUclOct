@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GamejamCheese.View
+namespace GamejamCheese.Models
 {
-	internal class Encounter
+	internal class InventorySize
 	{
 	}
 }

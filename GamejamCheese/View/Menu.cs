@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Spectre.Console;
+
 
 namespace GamejamCheese.View
 {
-	internal class Menu
+	public class Menu
 	{
+
+		public void Startmenu()
+		{
+			AnsiConsole.Markup("[underline bold red]Hello[/] World!");
+		}
+		
 	}
 }
