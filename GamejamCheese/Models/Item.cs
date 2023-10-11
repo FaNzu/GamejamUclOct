@@ -28,12 +28,11 @@ namespace GamejamCheese.Models
 		}
 
 		//Constructor for gear
-		public Item(string name, string discription, int value, TypeOfItem itemType, ItemEffect itemEffect, SlotType slotType)
+		public Item(string name, string discription, int value, ItemEffect itemEffect, SlotType slotType)
 		{
 			Name = name;
 			Description = discription;
 			Value = value;
-			ItemType = itemType;
 			ItemType = TypeOfItem.Gear;
 			ItemEffect = itemEffect;
 			SlotType = slotType;

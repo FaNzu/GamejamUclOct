@@ -10,6 +10,7 @@ namespace GamejamCheese.Models
 	{
 		public string Description { get; set; }
 		public Section NextSection { get; set; }
+		public Section LastSection { get; set; }
 		public bool IsVisible { get; set; }
 
 

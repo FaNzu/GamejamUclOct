@@ -1,5 +1,4 @@
-﻿using GamejamCheese.Models.Inventory;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +10,7 @@ namespace GamejamCheese.Models
     {
         public EncounterType type { get; set; }
         public int HP { get; set; }
-
         public int O2 { get; set; }
-
         public Item Loot { get; set; }
 
         public Encounter(EncounterType type, int hP, int o2, Item loot)
