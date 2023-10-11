@@ -10,8 +10,27 @@ namespace GamejamCheese.View
 {
 	public class EncounterManager
 	{
-		static public void Show()
+		private static CanvasImage playerimage = new CanvasImage("../../../View/Pictures/Mars.png");
+		private static CanvasImage image;
+
+
+		static public void Show(EncounterType type)
 		{
+			switch (type)
+			{
+				case EncounterType.Alien:
+					image = new CanvasImage("../../../View/Pictures/amongus.png");
+					break;
+				case EncounterType.ArlaEmploye:
+					image = new CanvasImage("../../../View/Pictures/Arla.png");
+					break;
+				case EncounterType.Vendor:
+					image = new CanvasImage("../../../View/Pictures/Vendor.png");
+					break;
+				default:
+					image = new CanvasImage("../../../View/Pictures/amongus.png");
+					break;
+			}
 			AnsiConsole.Write(CreateTable());
 		}
 
@@ -27,19 +46,20 @@ namespace GamejamCheese.View
 				.Collapse();
 
 			var playerChart = new BarChart()
-				.Width(30)
+				.Width(50)
 				.Label("player")
-				.AddItem("Health", 30, Color.Red) //ændre 3 til player hp
-				.AddItem("O2", 10, Color.Blue); //lyseblå?
+				.AddItem("Health", 50, Color.Red) //ændre 3 til player hp
+				.AddItem("O2", 40, Color.Blue); //lyseblå?
 
 			var enemyChart = new BarChart()
-				.Width(30)
+				.Width(50)
 				.Label("enemy")
-				.AddItem("Health", 10, Color.Red) //ændre 3 til player hp
-				.AddItem("O2", 1, Color.Blue); //lyseblå?
+				.AddItem("Health", 50, Color.Red) //ændre 3 til player hp
+				.AddItem("O2", 50, Color.Blue); //lyseblå?
 
-			var image = new CanvasImage("../../../View/Pictures/spaceship1.png");
+			
 			image.MaxWidth = 10;
+			playerimage.MaxWidth = 10;
 
 			//game table
 			var second = new Table()
@@ -59,7 +79,7 @@ namespace GamejamCheese.View
 				.AddColumn("enemy")
 				.HideHeaders()
 				.Border(TableBorder.None)
-				.AddRow(image, new Text(""), image)
+				.AddRow(playerimage, new Text(""), image)
 				.Expand()
 				.Centered();
 
