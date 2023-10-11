@@ -20,5 +20,11 @@ namespace GamejamCheese.Models
             O2 = o2;
             Loot = loot;
         }
-    }
+		public Encounter(EncounterType type, int hP, int o2)
+		{
+			this.type = type;
+			HP = hP;
+			O2 = o2;
+		}
+	}
 }
