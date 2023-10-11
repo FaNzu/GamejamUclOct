@@ -2,3 +2,48 @@
 Type Gear
 GearSlot head
 Effect +HP
+
+Item 2001
+Type Gear 
+GearSlot Chest
+Effect +HP
+
+Item 2002
+Type Gear
+GearSlot Pants
+Effect +HP
+
+Item 2003
+Type Gear
+GearSlot Shoes
+Effect +HP
+
+Item 2004
+Type Gear
+GearSlot Weapon
+Effect +DMG
+
+Item 2005
+Type Gear
+GearSlot Helmet 
+Effect +O2
+
+Item 2006
+Type Gear
+GearSlot Chest
+Effect +O2
+
+Item 2007
+Type Gear
+GearSlot Pants
+Effect +O2
+
+Item 2008
+Type Gear
+GearSlot Shoes
+Effect +O2
+
+Item 2009
+Type Gear
+GearSlot Weapon
+Effect +DMG
