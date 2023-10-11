@@ -15,7 +15,6 @@ namespace GamejamCheese.Models
 		public SlotType SlotType { get; set; }
 		public ItemEffect? ItemEffect { get; set; }	
 
-
 		//Constructor for normal items
 		public Item(TypeOfItem itemType, string name, string discription, int value, ItemEffect? itemEffect)
 		{

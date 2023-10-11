@@ -1,4 +1,4 @@
-
+using GamejamCheese.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace GamejamCheese.View
 {
 	public class EncounterManager
 	{
-		static public void show()
+		static public void Show()
 		{
 			AnsiConsole.Write(CreateTable());
 		}
