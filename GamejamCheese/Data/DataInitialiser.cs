@@ -33,6 +33,12 @@ namespace GamejamCheese.Data
 			result.Add(new Item(TypeOfItem.Consumeble, "Oxygen Tank", "Small singleuse container of O2. Can be used to top up your suits oxygen supply.", 15, ItemEffect.RestoreAmountO2));
 			result.Add(new Item(TypeOfItem.Consumeble, "Jerry Can", "A can originaly invented by one Jerry F. Uel, usualy contains fuel.", 15, ItemEffect.RestoreFuel));
 
+			// Junk
+			result.Add(new Item(TypeOfItem.Junk, "Moon Rock", "Suprisingly popular on earth, in space not so much.", 2, null));
+			result.Add(new Item(TypeOfItem.Junk, "Mars Rock", "Wow, cool rock bro.", 2, null));
+			result.Add(new Item(TypeOfItem.Junk, "Alien's Finger", "Glows for a while when shaken, useful for emergency lighting.", 5, null));
+			result.Add(new Item(TypeOfItem.Junk, "Mars Mafioso Tattoo", "Apparently they are actually just stickers", 3, null));
+
 			return result;
 		}
 	}
