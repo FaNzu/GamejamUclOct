@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GamejamCheese.Data
 {
-	public class DataInitialiser
+	public static class DataInitialiser
 	{
-		public List<Item> GenerateItems()
+		public static List<Item> GenerateItems()
 		{
 			List<Item> result = new List<Item>();
 
