@@ -10,24 +10,46 @@ using System.Threading.Tasks;
 
 namespace GamejamCheese.View
 {
-	public class SectionView
+	public static class SectionView
 	{
-		public void StartMenu()
+		public static void Show(Section section)
 		{
-			var image = new CanvasImage("../../../View/Pictures/spaceship1.png");
+			AnsiConsole.Write(StartMenu(section));
+		}
+		public static Table StartMenu(Section section)
+		{
+			var image = new CanvasImage("../../../View/Pictures/Mars.png");
 			image.MaxWidth = 15;
 
-			var table = new Table();
-			//table.AddColumn($"{section.Name} - {section.Description}");
-			table.AddColumn($"Mars - Mars is hot or something").Centered();
-			table.AddRow(image).Centered();
-			table.AddRow(new Panel("Test panel"));
-			table.AddRow(new Panel("Test panel"));
-			table.AddRow(new Panel("Test panel"));
-			table.AddRow(new Panel("Test panel"));
+			var titleAndImage = new Table()
+				.AddColumn($"{section.Name} - {section.Description}").Centered()
+				.AddRow(image).Centered()
+				.Border(TableBorder.None);
 
-			AnsiConsole.Write(table);
+			var status = new BarChart()
+				.AddItem("Health", 10, Color.Red)
+				.AddItem("O2", 15, Color.SkyBlue1)
+				.AddItem("Fuel", 10, Color.LightYellow3)
+				.Width(50);
 
+
+			var playerMenu = new Table()
+				.AddColumn("Actions")
+				.AddColumn("Move")
+				.AddColumn("Status")
+				.AddRow($"{section.Choice}", "Station")
+				.AddRow(new Text("Inventory"), new Text("Bar"), status)
+				.Expand();
+
+			var result = new Table()
+			   .Centered()
+			   .Expand()
+			   .AddColumn("")
+			   .HideHeaders()
+			   .AddRow(titleAndImage)
+			   .AddRow(playerMenu);
+
+			return result;
 		}
 	}
 }

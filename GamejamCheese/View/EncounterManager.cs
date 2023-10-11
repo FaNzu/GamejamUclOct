@@ -10,7 +10,7 @@ namespace GamejamCheese.View
 {
 	public class EncounterManager
 	{
-		static public void show()
+		static public void Show()
 		{
 			AnsiConsole.Write(CreateTable());
 		}

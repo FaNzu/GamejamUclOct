@@ -1,8 +1,6 @@
 ﻿using GamejamCheese.Controller;
-using GamejamCheese.View;
-using Spectre.Console;
 using GamejamCheese.Models;
-using GamejamCheese.Controller;
+using GamejamCheese.View;
 
 namespace GamejamCheese
 {
@@ -10,7 +8,7 @@ namespace GamejamCheese
 	{
 		static void Main(string[] args)
 		{
-			EncounterManager.show();
+			EncounterManager.Show();
 
             //var image = new CanvasImage("../../../View/Pictures/spaceship1.png");
             //image.MaxWidth = 25;
@@ -19,8 +17,8 @@ namespace GamejamCheese
 
             EncounterController encounterController = new EncounterController();
             encounterController.Encounter(EncounterType.Alien);
-            SectionView section = new SectionView();
-			section.StartMenu();
+			Section section = new Section("Mars", "This planet has no form of life", "Dig a hole", null, Modifier.ZeroOxygen);
+			SectionController.NewSection(section);
 			Console.ReadLine();
 		}
 	}
