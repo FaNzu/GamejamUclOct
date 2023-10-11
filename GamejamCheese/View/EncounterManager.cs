@@ -23,6 +23,7 @@ namespace GamejamCheese.View
 				.AddColumn("Run")
 				.AddColumn("Shoot")
 				.AddRow("[blue]dodge[/]", "[white]inv[/]")
+				.Centered()
 				.Collapse();
 
 			var playerChart = new BarChart()
@@ -37,6 +38,8 @@ namespace GamejamCheese.View
 				.AddItem("Health", 10, Color.Red) //ændre 3 til player hp
 				.AddItem("O2", 1, Color.Blue); //lyseblå?
 
+			var image = new CanvasImage("../../../View/Pictures/spaceship1.png");
+			image.MaxWidth = 10;
 
 			//game table
 			var second = new Table()
@@ -49,16 +52,25 @@ namespace GamejamCheese.View
 				.Centered()
 				.Expand();
 
+
+			var first = new Table()
+				.AddColumn("player")
+				.AddColumn("filler")
+				.AddColumn("enemy")
+				.HideHeaders()
+				.Border(TableBorder.None)
+				.AddRow(image, new Text(""), image)
+				.Expand()
+				.Centered();
+
 			return new Table()
 				.Centered()
 				.Border(TableBorder.DoubleEdge)
 				.Title("TABLE [yellow]TITLE[/]")
 				.Caption("TABLE [yellow]CAPTION[/]")
-				//.AddColumn(new TableColumn(new Panel("[u]ABC[/]").BorderColor(Color.Red)).Footer("[u]FOOTER 1[/]"))
-				.AddColumn("drawing area")
-				.AddRow(new Text("Hello").Centered())
+				.AddColumn("middle")
+				.AddRow(first)
 				.AddRow(second)
-				.AddRow(new Markup("[blue]Hej[/]").Centered())
 				.Expand();
 		}
 	}

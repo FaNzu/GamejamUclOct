@@ -1,7 +1,6 @@
 ﻿using GamejamCheese.Controller;
 using GamejamCheese.Models;
 using GamejamCheese.View;
-
 namespace GamejamCheese
 {
 	internal class Program
