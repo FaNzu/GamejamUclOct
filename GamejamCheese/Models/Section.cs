@@ -13,7 +13,6 @@ namespace GamejamCheese.Models
 		public List<string> Choice { get; set; }
 		//choice en klasse med muligheder?
 		public List<Connection> Connections { get; set; }
-		public Modifiers Modifier { get; set; }
 
 
 

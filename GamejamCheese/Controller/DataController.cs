@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GamejamCheese.Models
+namespace GamejamCheese.Controller
 {
-	internal class InventorySize
+	public class DataController
 	{
 	}
 }
