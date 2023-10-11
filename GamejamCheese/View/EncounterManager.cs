@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GamejamCheese.View
 {
-	internal class Setting
+	internal class EncounterManager
 	{
 	}
 }
