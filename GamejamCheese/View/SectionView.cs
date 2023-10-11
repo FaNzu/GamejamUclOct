@@ -14,9 +14,9 @@ namespace GamejamCheese.View
 	{
 		public static void Show(Section section)
 		{
-			AnsiConsole.Write(StartMenu(section));
+			AnsiConsole.Write(GenerateMenu(section));
 		}
-		public static Table StartMenu(Section section)
+		public static Table GenerateMenu(Section section)
 		{
 			var image = new CanvasImage("../../../View/Pictures/Mars.png");
 			image.MaxWidth = 15;
