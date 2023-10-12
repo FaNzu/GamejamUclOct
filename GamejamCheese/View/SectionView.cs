@@ -37,8 +37,8 @@ namespace GamejamCheese.View
 				.AddColumn("Actions")
 				.AddColumn("Move")
 				.AddColumn("Status")
-				.AddRow($"{section.Choice}", "Station")
-				.AddRow(new Text("Inventory"), new Text("Bar"), status)
+				.AddRow($"1. {section.Choice}", "2. Station")
+				.AddRow(new Text("3. Inventory"), new Text("4. Bar"), status)
 				.Expand();
 
 			var result = new Table()
