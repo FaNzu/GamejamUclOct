@@ -8,7 +8,6 @@ namespace GamejamCheese.Models
 {
 	public class Connection
 	{
-		public string Description { get; set; }
 		public Section NextSection { get; set; }
 		public Section LastSection { get; set; }
 		public bool IsVisible { get; set; }
@@ -16,11 +15,14 @@ namespace GamejamCheese.Models
 
 		public Connection() { }
 
-		public Connection(string description, Section nextSection, bool isVisible)
+		public Connection(Section nextSection, bool isVisible)
 		{
-			Description = description;
 			NextSection = nextSection;
 			IsVisible = isVisible;
+		}
+		public override string ToString()
+		{
+			return $"{NextSection.Name}";
 		}
 	}
 }
