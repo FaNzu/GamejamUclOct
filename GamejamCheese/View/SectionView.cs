@@ -14,9 +14,9 @@ namespace GamejamCheese.View
 	{
 		public static void Show(Section section)
 		{
-			AnsiConsole.Write(StartMenu(section));
+			AnsiConsole.Write(GenerateMenu(section));
 		}
-		public static Table StartMenu(Section section)
+		public static Table GenerateMenu(Section section)
 		{
 			var image = new CanvasImage("../../../View/Pictures/Mars.png");
 			image.MaxWidth = 15;
@@ -27,9 +27,9 @@ namespace GamejamCheese.View
 				.Border(TableBorder.None);
 
 			var status = new BarChart()
-				.AddItem("Health", 10, Color.Red)
-				.AddItem("O2", 15, Color.SkyBlue1)
-				.AddItem("Fuel", 10, Color.LightYellow3)
+				.AddItem("Health", Player.HP, Color.Red)
+				.AddItem("O2", Player.O2, Color.SkyBlue1)
+				.AddItem("Fuel", Player.Fuel, Color.LightYellow3)
 				.Width(50);
 
 

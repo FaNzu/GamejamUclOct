@@ -37,6 +37,12 @@ namespace GamejamCheese.Models
 			SlotType = slotType;
 		}
 
+
+		public override string ToString()
+		{
+			return $"{Name} - {Description} - {Value} - {ItemType} - {ItemEffect}";
+		}
+
 	}
 	public enum TypeOfItem
 	{
