@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GamejamCheese.Data
 {
-	public class DataInitialiser
+	public static class DataInitialiser
 	{
-		public List<Item> GenerateItems()
+		public static List<Item> GenerateItems()
 		{
 			List<Item> result = new List<Item>();
 			Item HeadItem = new Item("HeadItem2000","Very rusty helmet", 15, ItemEffect.IncreaseHP, SlotType.Helmet);
@@ -33,7 +33,10 @@ namespace GamejamCheese.Data
 			result.Add(new Item(TypeOfItem.Consumeble, "Oxygen Tank", "Small singleuse container of O2. Can be used to top up your suits oxygen supply.", 15, ItemEffect.RestoreAmountO2));
 			result.Add(new Item(TypeOfItem.Consumeble, "Jerry Can", "A can originaly invented by one Jerry F. Uel, usualy contains fuel.", 15, ItemEffect.RestoreFuel));
 
-			return result;
+            //Junk
+            result.Add(new Item(TypeOfItem.Junk, "Can", "A can originaly invented by one Jerry F. Uel, usualy contains fuel.", 15, ItemEffect.RestoreFuel));
+
+            return result;
 		}
 	}
 }

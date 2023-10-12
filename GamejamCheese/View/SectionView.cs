@@ -21,12 +21,12 @@ namespace GamejamCheese.View
 		}
 		public static Table StartMenu(Section section)
 		{
-			var image = new CanvasImage(section.ImagePath);
-			image.MaxWidth = 25;
+			//var image = new CanvasImage(section.ImagePath);
+			//image.MaxWidth = 25;
 
 			var titleAndImage = new Table()
 				.AddColumn($"{section.Name} - {section.Description}").Centered()
-				.AddRow(image).Centered()
+				//.AddRow(image).Centered()
 				.Border(TableBorder.None);
 
 			var status = new BarChart()
