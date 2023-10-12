@@ -21,7 +21,7 @@ namespace GamejamCheese.View
 		{
 			var inventory = new SelectionPrompt<Item>()
 				.Title("Here is you're invetory")
-				.PageSize(Player.PlayerInventory.Count())
+				.PageSize(Player.PlayerInventory.Count + 3)
 				.MoreChoicesText("Move up and down to navigate")
 				.AddChoices(Player.PlayerInventory);
 

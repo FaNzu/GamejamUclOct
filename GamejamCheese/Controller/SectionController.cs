@@ -47,6 +47,8 @@ namespace GamejamCheese.Controller
 					string temp = SearchSection();
 					AnsiConsole.Clear();
 					Console.WriteLine(temp);
+					Console.ReadLine();
+					AnsiConsole.Clear();
 					StartSection(section.Connections[0].NextSection);
 					break;
 				case 2:
@@ -81,7 +83,7 @@ namespace GamejamCheese.Controller
 
 						if (randomItem.ItemType == TypeOfItem.Junk)
 						{
-							Player.PlayerInventory.Append(randomItem);
+							Player.PlayerInventory.Add(randomItem);
 							isFound = false;
 							result = $"You got this item: {randomItem.Name}";
 						}
@@ -95,7 +97,7 @@ namespace GamejamCheese.Controller
 
 						if (randomItem.ItemType == TypeOfItem.Consumeble)
 						{
-							Player.PlayerInventory.Append(randomItem);
+							Player.PlayerInventory.Add(randomItem);
 							isFound = false;
 							result = $"You got this item: {randomItem.Name}";
 						}
@@ -109,7 +111,7 @@ namespace GamejamCheese.Controller
 
 						if (randomItem.ItemType == TypeOfItem.Gear)
 						{
-							Player.PlayerInventory.Append(randomItem);
+							Player.PlayerInventory.Add(randomItem);
 							isFound = false;
 							result = $"You got this item: {randomItem.Name}";
 						}
