@@ -90,8 +90,8 @@ namespace GamejamCheese.Controller
                 Console.WriteLine("You rolled to atk: " + DiceRoll);
                 
 
-				if (encounter.HP <= 0)
-				{
+				if (encounter.HP <= 0)  // ADD MONEY AND ITEMS DROPS HER!!!!
+                {
 					// end encounter
 					/*
                      * roll on the lootTable
@@ -164,7 +164,7 @@ namespace GamejamCheese.Controller
 				Console.WriteLine("You rolled a:" + DiceRoll);
 
 
-				if (encounter.HP <= 0)
+				if (encounter.HP <= 0) // ADD MONEY AND ITEMS DROPS HER!!!!
 				{
 					// end encounter
 					/*
@@ -174,7 +174,9 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
 					CombatDone = true;
-				}
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
+                }
 				else
 				{
 					int EnemyRoll = random.Next(1, 10); // IDEA: random if dmg is to hp o2 or fuel?
