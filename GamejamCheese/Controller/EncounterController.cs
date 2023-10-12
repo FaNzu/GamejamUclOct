@@ -13,13 +13,13 @@ namespace GamejamCheese.Controller
 	public class EncounterController
 	{
 
-		private static Random random = new Random();
-		Encounter encounter = new Encounter(0, 40, 40, DataInitialiser.GenerateItems()[5]); // need to adjust item parameter
-		EncounterType EnemyType;
-
-
-
-
+        private static Random random = new Random();
+        Encounter encounter = new Encounter(0, 20, 20, DataInitialiser.GenerateItems()[5]); // need to adjust item parameter
+        EncounterType EnemyType;
+        
+       
+        
+        
 
 		// todo:
 		// if vendor go to shopping menu
@@ -57,37 +57,38 @@ namespace GamejamCheese.Controller
 				EncounterManager.Show(EncounterType.Alien, encounter);
 				// --> Player chooses action from menu ( atk, flee, use item )
 
-				var Input = AnsiConsole.Prompt(
-					 new SelectionPrompt<string>()
-					 .Title("")
-					 .PageSize(10)
-					 .MoreChoicesText("")
-					 .AddChoices(new[] { "shoot", "use item", "flee" }));
-				int DiceRoll = 0;
-				switch (Input)
-				{
-					case "shoot": // atk with weapon
-						DiceRoll = random.Next(1, 20);
-						encounter.HP -= DiceRoll;
-						break;
-					case "use item": // use item in inventory
-						Console.WriteLine("you're out of items! oh no!");
-						break;
-					case "flee": // try to flee ( dice roll? )
-						int FleeRoll = random.Next(1, 100);
-						Console.WriteLine("you rolled a " + FleeRoll);
-						if (FleeRoll >= 50)
-						{
-							//end combat
-							CombatDone = true;
-						}
-						break;
-				}
+                var Input = AnsiConsole.Prompt(
+                     new SelectionPrompt<string>()
+                     .Title("")
+                     .PageSize(10)
+                     .MoreChoicesText("")
+                     .AddChoices(new[] { "shoot", "use item", "flee" }));
+                int DiceRoll = 0;
+                switch (Input)
+                {
+                    case "shoot": // atk with weapon
+                        DiceRoll = random.Next(1, 20);
+                        encounter.HP -= DiceRoll;
+                        break;
+                    case "use item": // use item in inventory
+                        Console.WriteLine("you're out of items! oh no!");
+                        AnsiConsole.WriteLine("you're out of items! oh no!");
+                        break;
+                    case "flee": // try to flee ( dice roll? )
+                        int FleeRoll = random.Next(1, 100);
+                        Console.WriteLine("you rolled a " + FleeRoll);
+                        if (FleeRoll >= 50)
+                        {
+                            //end combat
+                            CombatDone = true;
+                        }
+                        break;
+                }
 
-				//Console.Clear();
-				AnsiConsole.Clear();
-				Console.WriteLine("You rolled a:" + DiceRoll);
-
+                //Console.Clear();
+                AnsiConsole.Clear();
+                Console.WriteLine("You rolled to atk: " + DiceRoll);
+                
 
 				if (encounter.HP <= 0)
 				{
@@ -98,19 +99,27 @@ namespace GamejamCheese.Controller
                      * if inventory is free, pickup
                      * else ask to swap item
                      */
-					CombatDone = true;
-				}
-				else
-				{
-					int EnemyRoll = random.Next(1, 10); // IDEA: random if dmg is to hp o2 or fuel?
-
-					Console.WriteLine("the enemy is attacking! " + "you take:" + EnemyRoll + " Damage!");
-					Player.HP -= EnemyRoll;
-				}
-
-			}
-
-		}
+                    CombatDone = true;
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
+                }
+                else
+                {   
+                    int EnemyRoll = random.Next(1, 20); // IDEA: random if dmg is to hp o2 or fuel?
+                    
+                    Console.WriteLine("the enemy is attacking! "+"you take:" + EnemyRoll + " Damage!");
+                    Player.HP -= EnemyRoll;
+                }
+                if (Player.HP <= 0) 
+                    {
+                    CombatDone = true;
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
+                    }
+                
+            }
+            
+        }
 
 		public void StarBattleArla()
 		{

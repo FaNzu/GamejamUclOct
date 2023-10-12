@@ -12,9 +12,9 @@ namespace GamejamCheese.Data
 		public static List<Item> GenerateItems()
 		{
 			List<Item> result = new List<Item>();
-
-			// Gear
-			result.Add(new Item("HeadItem2000","A very rusty helmet, it has a big dent", 15, ItemEffect.IncreaseHP, SlotType.Helmet));
+            #region creating items
+            // Gear
+            result.Add(new Item("HeadItem2000","A very rusty helmet, it has a big dent", 15, ItemEffect.IncreaseHP, SlotType.Helmet));
 			result.Add(new Item("ChestItem2001", "A rusty breastplate, it is almost falling apart", 20, ItemEffect.IncreaseHP, SlotType.Chest));
 			result.Add(new Item("PantsItem2002", "A pair of rusty iron pants, they pinch in a very unfortunate place", 20, ItemEffect.IncreaseHP, SlotType.Pants));
 			result.Add(new Item("ShoesItem2003","A very rusty pair of iron boots, not very comfortable", 15, ItemEffect.IncreaseHP, SlotType.Shoes));
@@ -46,8 +46,8 @@ namespace GamejamCheese.Data
 			result.Add(new Item(TypeOfItem.Junk, "Mars Rock", "Wow, cool rock bro.", 2, null));
 			result.Add(new Item(TypeOfItem.Junk, "Alien's Finger", "Glows for a while when shaken, useful for emergency lighting.", 5, null));
 			result.Add(new Item(TypeOfItem.Junk, "Mars Mafioso Tattoo", "Apparently they are actually just stickers", 3, null));
-
-			return result;
+            #endregion
+            return result;
 		}
 
 		public static Section GenerateSections() 
