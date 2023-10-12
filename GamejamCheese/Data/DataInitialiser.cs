@@ -36,10 +36,8 @@ namespace GamejamCheese.Data
 			return result;
 		}
 
-		public List<Section> GenerateSections() 
+        public Section GenerateSections() 
 		{
-            List<Section> result = new List<Section>();
-            
             //New Connections
             Connection MoonOrbitToMoonSurface = new Connection();
             Connection MoonOrbitToSpaceDiner = new Connection();
@@ -53,7 +51,11 @@ namespace GamejamCheese.Data
             Connection MartianCapitalToMartianBar = new Connection();
             Connection MartianCapitalToMilkMafiaHQ = new Connection();
             Connection MartianCapitalToCheesePyramid = new Connection();
-            Connection MilkMafiaHQtoMilkMafiaRoom1
+            Connection MilkMafiaHQtoMilkMafiaRoom = new Connection();
+            Connection MilkMafiaRoomToMilkMafiaBoss = new Connection();
+            Connection CheesePyramidToPyramidRightWing = new Connection();
+            Connection CheesePyramidToPyramidLeftWing = new Connection();
+            Connection CheesePyramidToPyramidFinalRoom = new Connection();
 
             //New sections
             Section MoonOrbit = new Section("The Moon", "Where is all the cheese?", "Land on the surface", Modifier.NormalGravity);
@@ -71,9 +73,12 @@ namespace GamejamCheese.Data
             Section CheesePyramid = new Section("The Great Cheese Pyramid", "You feel the hands of fate churning", "Search the Pyramid", Modifier.HighGravity);
             Section MilkMafiaRoom = new Section("Milk Mafia Storage Facility", "Smells like crime and cheese", "Look Around", Modifier.HighTemp);
             Section MilkMafiaBoss = new Section("Al Cowpone's Office", "His little friend says hello", "Search the office", Modifier.HighTemp);
+            Section PyramidRightWing = new Section("The right wing of the Pyramid", "Smells like Old Brie", "Look Around", Modifier.HighGravity);
+            Section PyramidLeftWing = new Section("The left wing of the Pyramid", "Are the walls made of cheese?", "Look Around", Modifier.HighGravity);
+            Section PyramidFinalRoom = new Section("The legendary cheese antechamber", "At long last", "Look Around", Modifier.HighGravity);
 
 
-
+            #region Connection Sections
             //Connecting sections
             MoonOrbitToMoonSurface.NextSection = MoonSurface;
             MoonOrbitToMoonSurface.LastSection = MoonOrbit;
@@ -147,9 +152,40 @@ namespace GamejamCheese.Data
 
             MartianCapital.Connections.Add(MartianCapitalToCheesePyramid);
 
+            MilkMafiaHQtoMilkMafiaRoom.NextSection = MilkMafiaRoom;
+            MilkMafiaHQtoMilkMafiaRoom.LastSection = MilkMafiaHQ;
+            MilkMafiaHQtoMilkMafiaRoom.IsVisible = true;
+
+            MilkMafiaHQ.Connections.Add(MilkMafiaHQtoMilkMafiaRoom);
+
+            MilkMafiaRoomToMilkMafiaBoss.NextSection = MilkMafiaBoss;
+            MilkMafiaRoomToMilkMafiaBoss.LastSection = MilkMafiaRoom;
+            MilkMafiaRoomToMilkMafiaBoss.IsVisible = true;
+
+            MilkMafiaRoom.Connections.Add(MilkMafiaRoomToMilkMafiaBoss);
+
+            CheesePyramidToPyramidRightWing.NextSection = PyramidRightWing;
+            CheesePyramidToPyramidRightWing.LastSection = CheesePyramid;
+            CheesePyramidToPyramidRightWing.IsVisible = true;
+
+            CheesePyramid.Connections.Add(CheesePyramidToPyramidRightWing);
+
+            CheesePyramidToPyramidLeftWing.NextSection = PyramidLeftWing;
+            CheesePyramidToPyramidLeftWing.LastSection = CheesePyramid;
+            CheesePyramidToPyramidLeftWing.IsVisible = true;
+
+            CheesePyramid.Connections.Add(CheesePyramidToPyramidLeftWing);
+
+            CheesePyramidToPyramidFinalRoom.NextSection = PyramidFinalRoom;
+            CheesePyramidToPyramidFinalRoom.LastSection = CheesePyramid;
+            CheesePyramidToPyramidFinalRoom.IsVisible = true;
+
+            CheesePyramid.Connections.Add(CheesePyramidToPyramidFinalRoom);
+            #endregion
+
             //Adds Sections to list
 
-            return result;
+            return MoonOrbit;
         }
 	}
 }
