@@ -29,8 +29,10 @@ namespace GamejamCheese
 			//Encounter encounter = new Encounter(0, 50, 50, DataInitialiser.GenerateItems()[5]);
 			//EncounterManager.Show(EncounterType.Alien, encounter);
 
+			
+
 			EncounterController encounterController = new EncounterController();
-			encounterController.MeetVendor();
+			encounterController.Encounter(EncounterType.Alien);
 			//Section section = new Section("Mars", "This planet has no form of life", "Dig a hole", null, Modifier.ZeroOxygen);
 			//SectionController.NewSection(section);
 			Console.ReadLine();
