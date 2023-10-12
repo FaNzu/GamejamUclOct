@@ -32,9 +32,9 @@ namespace GamejamCheese.View
 					break;
 			}
 			AnsiConsole.Write(CreateCombatTable(enemy));
-			Console.ReadLine();
-			image = new CanvasImage("../../../View/Pictures/Vendor.png");
-			AnsiConsole.Write(CreateVendorTable());
+			//Console.ReadLine();
+			//image = new CanvasImage("../../../View/Pictures/Vendor.png");
+			//AnsiConsole.Write(CreateVendorTable());
 		}
 
 		private static Table CreateCombatTable(Encounter enemy)

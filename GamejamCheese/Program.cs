@@ -26,11 +26,13 @@ namespace GamejamCheese
 			//	Player.PlayerInventory[i] = DataInitialiser.GenerateItems().ToArray()[i]; 
 			//}
 			//InventoryController.Show();
-			Encounter encounter = new Encounter(0, 50, 50, DataInitialiser.GenerateItems()[5]);
-			EncounterManager.Show(EncounterType.Alien, encounter);
+			//Encounter encounter = new Encounter(0, 50, 50, DataInitialiser.GenerateItems()[5]);
+			//EncounterManager.Show(EncounterType.Alien, encounter);
 
-			//EncounterController encounterController = new EncounterController();
-			//encounterController.Encounter(EncounterType.Alien);
+			
+
+			EncounterController encounterController = new EncounterController();
+			encounterController.Encounter(EncounterType.Alien);
 			//Section section = new Section("Mars", "This planet has no form of life", "Dig a hole", null, Modifier.ZeroOxygen);
 			//SectionController.NewSection(section);
 			Console.ReadLine();
