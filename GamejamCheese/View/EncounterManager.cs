@@ -12,7 +12,7 @@ namespace GamejamCheese.View
 	public class EncounterManager
 	{
 		private static CanvasImage playerimage = new CanvasImage("../../../View/Pictures/Mars.png");
-		private static CanvasImage image;
+		private static CanvasImage image = new CanvasImage("../../../View/Pictures/amongus.png");
 
 		public static void Show(EncounterType type, Encounter enemy)
 		{
@@ -34,7 +34,7 @@ namespace GamejamCheese.View
 			AnsiConsole.Write(CreateCombatTable(enemy));
 			Console.ReadLine();
 			image = new CanvasImage("../../../View/Pictures/Vendor.png");
-			AnsiConsole.Write(CreateVendorTable());
+			//AnsiConsole.Write(CreateVendorTable());
 		}
 
 		private static Table CreateCombatTable(Encounter enemy)
@@ -97,9 +97,11 @@ namespace GamejamCheese.View
 				.Expand();
 		}
 
-		private static Layout CreateVendorTable()
+		public static Layout CreateVendorTable(List<Item> selectedItems)
 		{
-			Random random = new Random();
+			image = new CanvasImage("../../../View/Pictures/Vendor.png"); 
+			CanvasImage itemImage = new CanvasImage("../../../View/Pictures/Box.png");
+			//Random random = new Random();
 			var layout = new Layout("Root")
 						.SplitRows(
 							new Layout("Drawing"),
@@ -107,22 +109,28 @@ namespace GamejamCheese.View
 								.SplitColumns(
 									new Layout("Item1"),
 									new Layout("Item2"),
-									new Layout("Item2"),
-									new Layout("Item2")),
+									new Layout("Item3"),
+									new Layout("Item4")),
 							new Layout("Stats")
 								.SplitColumns(
 									new Layout("Stats1"),
 									new Layout("Stats2"),
-									new Layout("Stats2"),
-									new Layout("Stats2")));
+									new Layout("Stats3"),
+									new Layout("Stats4")));
 
-			List<Item> allItems = DataInitialiser.GenerateItems();
-			List<Item> selectedItems;
+
+			//ukommanter disse ligner for at få items ind i koden igen.
+
+			//List<Item> allItems = DataInitialiser.GenerateItems();
+			//List<Item> selectedItems = new List<Item>();
+			layout["Drawing"].Update(image.MaxWidth(10));
 			for (int i = 0; i < 4; i++)
 			{
-				allItems[i] = allItems[random.Next(allItems.Count())];
+				//selectedItems.Add(allItems[random.Next(allItems.Count())]);
+				layout[$"Item{i+1}"].Update(new Panel(Align.Center(itemImage.MaxWidth(10))).Expand().Header($"item{i+1}"));
+				layout[$"Stats{i+1}"].Update(new Panel(Align.Center(new Text($"Name: {selectedItems[i].Name}\nValue: {selectedItems[i].Value}"))).Header($"Stats{i+1}"));
+
 			}
-			layout["Drawing"].Update(new Panel(Align.Center(image.MaxWidth(10))).Expand().Header("Vendor"));
 			
 
 			return layout;
