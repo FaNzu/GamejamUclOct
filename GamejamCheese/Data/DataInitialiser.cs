@@ -53,7 +53,6 @@ namespace GamejamCheese.Data
             Connection MartianCapitalToMartianBar = new Connection();
             Connection MartianCapitalToMilkMafiaHQ = new Connection();
             Connection MartianCapitalToCheesePyramid = new Connection();
-            Connection MilkMafiaHQtoMilkMafiaRoom1
 
             //New sections
             Section MoonOrbit = new Section("The Moon", "Where is all the cheese?", "Land on the surface", Modifier.NormalGravity);
