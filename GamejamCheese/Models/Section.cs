@@ -14,14 +14,15 @@ namespace GamejamCheese.Models
 		//choice en klasse med muligheder?
 		public List<Connection> Connections { get; set; }
 		public Modifier Modifier { get; set; }
+		public string? ImagePath { get; set; }
 
-		public Section(string name, string description, string choice, List<Connection> connections, Modifier modifier)
+		public Section(string name, string description, string choice, Modifier modifier)
 		{
 			Name = name;
 			Description = description;
 			Choice = choice;
-			Connections = connections;
 			Modifier = modifier;
+			Connections = new List<Connection>();
 		}
 	}
 }
