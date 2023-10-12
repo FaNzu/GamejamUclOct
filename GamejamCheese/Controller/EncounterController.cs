@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GamejamCheese.View;
+using Spectre.Console;
 
 namespace GamejamCheese.Controller
 {
@@ -12,22 +14,14 @@ namespace GamejamCheese.Controller
     {
         Random random = new Random();
         Encounter encounter = new Encounter(0, 12, 12, DataInitialiser.GenerateItems()[5]); // need to adjust item parameter
+        
 
         // todo:
         // if vendor go to shopping menu
-        // loop.
         // --> Player chooses action from menu ( atk, flee, use item )
 
-        public Item? Encounter(EncounterType type) // todo add modifier
+        public Item? Encounter(EncounterType type) // todo add modifier AND ADD ITEM TABLE
         {
-            //if (type == EncounterType.Alien) 
-            //{
-            //	StartBattle();	
-            //}
-            //else
-            //{
-            //	// return ??
-            //}
 
             switch (type)
             {
@@ -47,6 +41,8 @@ namespace GamejamCheese.Controller
         }
         public void StartBattle()
         {
+            EncounterManager.Show(encounter);
+            bool CombatDone=false;
             // loop. 
             // --> Player chooses action from menu ( atk, flee, use item ) Done ( missing item )
             // effects apply 
@@ -58,63 +54,60 @@ namespace GamejamCheese.Controller
             // --> if true = GameOver
             // loop end
 
-            // --> Player chooses action from menu ( atk, flee, use item )
-            Console.WriteLine
-                (" choose action! \n" +
-                " 1. Shoot! \n" +
-                " 2. use item \n" +
-                " 3. flee" +
-                " "
-                );
-
-            int Input = int.Parse(Console.ReadLine());
-
-            switch (Input)
+            while (CombatDone == false)
             {
-                case 1: // atk with weapon
-                    int DiceRoll = random.Next(1, 20);
-                    Console.WriteLine("you rolled a:" + DiceRoll);
-                    encounter.HP -= DiceRoll;
-                    break;
-                case 2: // use item in inventory
+                // --> Player chooses action from menu ( atk, flee, use item )
+                
+                var Input = AnsiConsole.Prompt(
+                     new SelectionPrompt<string>()
+                     .Title("")
+                     .PageSize(10)
+                     .MoreChoicesText("")
+                     .AddChoices(new[] { "shoot", "use item", "flee" }));
 
-                    break;
-                case 3: // try to flee ( dice roll? )
-                    int FleeRoll = random.Next(1, 100);
-                    Console.WriteLine("you rolled a:" + FleeRoll);
-                    if (FleeRoll >= 50)
-                    {
-                        //end combat
-                    }
-                    break;
+                switch (Input)
+                {
+                    case "shoot": // atk with weapon
+                        int DiceRoll = random.Next(1, 20);
+                        Console.WriteLine("you rolled a:" + DiceRoll);
+                        encounter.HP -= DiceRoll;
+                        break;
+                    case "use item": // use item in inventory
+
+                        break;
+                    case "flee": // try to flee ( dice roll? )
+                        int FleeRoll = random.Next(1, 100);
+                        Console.WriteLine("you rolled a:" + FleeRoll);
+                        if (FleeRoll >= 50)
+                        {
+                            //end combat
+                            CombatDone = true;
+                        }
+                        break;
+                }
+                // effects apply
+                // is enemy dead check?
+               
+                if (encounter.HP <= 0)
+                {
+                    // end encounter
+                    /*
+                     * roll on the lootTable
+                     * drop item
+                     * if inventory is free, pickup
+                     * else ask to swap item
+                     */
+                    CombatDone = true;
+                }
+                else
+                {
+                    int EnemyRoll = random.Next(1, 10); // IDEA: random if dmg is to hp o2 or fuel?
+                    Console.WriteLine("the enemy is attacking");
+                    Console.WriteLine("you take:" + EnemyRoll + " Damage!");
+                    Player.HP -= EnemyRoll;
+                }
             }
-
-            // effects apply
-            // is enemy dead check?
-            /*
-             * sudo:
-             * if enemy's hp <=0: end encounter
-             * else: enemies action ( dmg to hp,O2,Fuel )
-            */
-
-            if (encounter.HP <=0)
-            {
-                // end encounter
-                /*
-                 * roll on the lootTable
-                 * drop item
-                 * if inventory is free, pickup
-                 * else ask to swap item
-                */
-            }
-            else
-            {
-                int EnemyRoll = random.Next(1, 10);
-                Console.WriteLine("the enemy is attacking");
-                Console.WriteLine("you take:" + EnemyRoll + " Damage!");
-                Models.Player.HP -= EnemyRoll;
-
-            }
+            
         }
         public void MeetVendor() // needs lots
         {
@@ -123,6 +116,8 @@ namespace GamejamCheese.Controller
             // update inventory
 
         }
+
+
 
     }
 }
