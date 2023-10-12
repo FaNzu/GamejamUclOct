@@ -8,17 +8,40 @@ namespace GamejamCheese
 	{
 		static void Main(string[] args)
 		{
-			//EncounterManager.show();
+			//New Connections
+			Connection LandingZoneToTheMartian = new Connection();
+			Connection TheMartianToDoctorZed = new Connection();
 
-			//var image = new CanvasImage("../../../View/Pictures/spaceship1.png");
-			//image.MaxWidth = 25;
-			//AnsiConsole.Write(image);
-			//AnsiConsole.Markup("[underline bold red]Hello[/] World!");
-			//EncounterManager encounterManager = new EncounterManager();
-			//encounterManager.Encounter(EncounterType.Alien);
+			//New sections
+			Section MarsOrbit = new Section("Mars", "This planet has no form of life", "Scan planet for lifeforms", Modifier.LowGravity);
+			Section MarsLandingZone = new Section("Mars landing zone", "This landing zone does not seem safe....", "Refuel ship", Modifier.HighGravity);
+			Section TheMartian = new Section("The Martian", "This planet has no form of life", "Ask for roumers", Modifier.HighGravity);
+			Section DoctorZed = new Section("Doctor Zed", "This planet has no form of life", "Ask Doctor Zed to patch you op", Modifier.HighGravity);
 
-			Section section = new Section("Mars", "This planet has no form of life", "Dig a hole", null, Modifier.ZeroOxygen);
-			SectionController.NewSection(section);
+			Connection MarsOrbitToLandingZone = new Connection();
+
+
+			//Connecting sections
+			MarsOrbitToLandingZone.NextSection = MarsLandingZone;
+			MarsOrbitToLandingZone.LastSection = MarsOrbit;
+			MarsOrbitToLandingZone.IsVisible = true;
+
+			MarsOrbit.Connections.Add(MarsOrbitToLandingZone);
+
+			LandingZoneToTheMartian.NextSection = TheMartian;
+			LandingZoneToTheMartian.LastSection = MarsLandingZone;
+			LandingZoneToTheMartian.IsVisible = true;
+
+			MarsLandingZone.Connections.Add(LandingZoneToTheMartian);
+
+			TheMartianToDoctorZed.NextSection = DoctorZed;
+			TheMartianToDoctorZed.LastSection = TheMartian;
+			TheMartianToDoctorZed.IsVisible = true;
+
+			TheMartian.Connections.Add(TheMartianToDoctorZed);
+
+			//Starting the game at mars orbit
+			SectionController.StartSection(MarsOrbit);
 			Console.ReadLine();
 		}
 	}
