@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spectre.Console;
+using GamejamCheese.Data;
 
 namespace GamejamCheese.View
 {
@@ -13,8 +14,7 @@ namespace GamejamCheese.View
 		private static CanvasImage playerimage = new CanvasImage("../../../View/Pictures/Mars.png");
 		private static CanvasImage image;
 
-
-		static public void Show(EncounterType type)
+		public static void Show(EncounterType type, Encounter enemy)
 		{
 			switch (type)
 			{
@@ -31,10 +31,13 @@ namespace GamejamCheese.View
 					image = new CanvasImage("../../../View/Pictures/amongus.png");
 					break;
 			}
-			AnsiConsole.Write(CreateTable());
+			AnsiConsole.Write(CreateCombatTable(enemy));
+			Console.ReadLine();
+			image = new CanvasImage("../../../View/Pictures/Vendor.png");
+			AnsiConsole.Write(CreateVendorTable());
 		}
 
-		private static Table CreateTable()
+		private static Table CreateCombatTable(Encounter enemy)
 		{
 			var simple = new Table()
 				.Border(TableBorder.Square)
@@ -48,14 +51,14 @@ namespace GamejamCheese.View
 			var playerChart = new BarChart()
 				.Width(50)
 				.Label("player")
-				.AddItem("Health", 50, Color.Red) //ændre 3 til player hp
-				.AddItem("O2", 40, Color.Blue); //lyseblå?
+				.AddItem("Health", Player.HP, Color.Red) //ændre 3 til player hp
+				.AddItem("O2", Player.O2, Color.Blue); //lyseblå?
 
 			var enemyChart = new BarChart()
 				.Width(50)
 				.Label("enemy")
-				.AddItem("Health", 50, Color.Red) //ændre 3 til player hp
-				.AddItem("O2", 50, Color.Blue); //lyseblå?
+				.AddItem("Health", enemy.HP, Color.Red) //ændre 3 til player hp
+				.AddItem("O2", enemy.O2, Color.Blue); //lyseblå?
 
 			
 			image.MaxWidth = 10;
@@ -92,6 +95,37 @@ namespace GamejamCheese.View
 				.AddRow(first)
 				.AddRow(second)
 				.Expand();
+		}
+
+		private static Layout CreateVendorTable()
+		{
+			Random random = new Random();
+			var layout = new Layout("Root")
+						.SplitRows(
+							new Layout("Drawing"),
+							new Layout("Pictures")
+								.SplitColumns(
+									new Layout("Item1"),
+									new Layout("Item2"),
+									new Layout("Item2"),
+									new Layout("Item2")),
+							new Layout("Stats")
+								.SplitColumns(
+									new Layout("Stats1"),
+									new Layout("Stats2"),
+									new Layout("Stats2"),
+									new Layout("Stats2")));
+
+			List<Item> allItems = DataInitialiser.GenerateItems();
+			List<Item> selectedItems;
+			for (int i = 0; i < 4; i++)
+			{
+				allItems[i] = allItems[random.Next(allItems.Count())];
+			}
+			layout["Drawing"].Update(new Panel(Align.Center(image.MaxWidth(10))).Expand().Header("Vendor"));
+			
+
+			return layout;
 		}
 	}
 }
