@@ -14,7 +14,7 @@ namespace GamejamCheese.Controller
     {
 
         private static Random random = new Random();
-        Encounter encounter = new Encounter(0, 40, 40, DataInitialiser.GenerateItems()[5]); // need to adjust item parameter
+        Encounter encounter = new Encounter(0, 20, 20, DataInitialiser.GenerateItems()[5]); // need to adjust item parameter
         EncounterType EnemyType;
         
        
@@ -72,6 +72,7 @@ namespace GamejamCheese.Controller
                         break;
                     case "use item": // use item in inventory
                         Console.WriteLine("you're out of items! oh no!");
+                        AnsiConsole.WriteLine("you're out of items! oh no!");
                         break;
                     case "flee": // try to flee ( dice roll? )
                         int FleeRoll = random.Next(1, 100);
@@ -86,7 +87,7 @@ namespace GamejamCheese.Controller
 
                 //Console.Clear();
                 AnsiConsole.Clear();
-                Console.WriteLine("You rolled a:" + DiceRoll);
+                Console.WriteLine("You rolled to atk: " + DiceRoll);
                 
 
                 if (encounter.HP <= 0)
@@ -99,14 +100,22 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
                     CombatDone = true;
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
                 else
                 {   
-                    int EnemyRoll = random.Next(1, 10); // IDEA: random if dmg is to hp o2 or fuel?
+                    int EnemyRoll = random.Next(1, 20); // IDEA: random if dmg is to hp o2 or fuel?
                     
                     Console.WriteLine("the enemy is attacking! "+"you take:" + EnemyRoll + " Damage!");
                     Player.HP -= EnemyRoll;
                 }
+                if (Player.HP <= 0) 
+                    {
+                    CombatDone = true;
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
+                    }
                 
             }
             
