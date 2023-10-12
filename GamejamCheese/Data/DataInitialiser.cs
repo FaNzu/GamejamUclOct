@@ -50,10 +50,8 @@ namespace GamejamCheese.Data
 			return result;
 		}
 
-		public List<Section> GenerateSections() 
+		public static Section GenerateSections() 
 		{
-            List<Section> result = new List<Section>();
-            
             //New Connections
             Connection MoonOrbitToMoonSurface = new Connection();
             Connection MoonOrbitToSpaceDiner = new Connection();
@@ -85,10 +83,9 @@ namespace GamejamCheese.Data
             Section MilkMafiaRoom = new Section("Milk Mafia Storage Facility", "Smells like crime and cheese", "Look Around", Modifier.HighTemp);
             Section MilkMafiaBoss = new Section("Al Cowpone's Office", "His little friend says hello", "Search the office", Modifier.HighTemp);
 
-
-
-            //Connecting sections
-            MoonOrbitToMoonSurface.NextSection = MoonSurface;
+			#region Connecting sections
+			//Connecting sections
+			MoonOrbitToMoonSurface.NextSection = MoonSurface;
             MoonOrbitToMoonSurface.LastSection = MoonOrbit;
             MoonOrbitToMoonSurface.IsVisible = true;
 
@@ -159,10 +156,9 @@ namespace GamejamCheese.Data
             MartianCapitalToMilkMafiaHQ.IsVisible = true;
 
             MartianCapital.Connections.Add(MartianCapitalToCheesePyramid);
-
+            #endregion
             //Adds Sections to list
-
-            return result;
+			return MoonOrbit;
         }
 	}
 }

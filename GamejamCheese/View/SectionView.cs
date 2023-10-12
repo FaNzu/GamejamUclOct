@@ -43,7 +43,7 @@ namespace GamejamCheese.View
 				.AddColumn("Actions")
 				.AddColumn("Move")
 				.AddColumn("Status")
-				.AddRow($"1. {section.Choice}")
+				.AddRow($"1. Search the area")
 				.AddRow(new Text("2. Inventory"), new Text($"4. test"), status)
 				.Expand();
 			}
@@ -53,8 +53,8 @@ namespace GamejamCheese.View
 				.AddColumn("Actions")
 				.AddColumn("Move")
 				.AddColumn("Status")
-				.AddRow($"1. {section.Choice}", $"3. {section.Connections[0].NextSection.Name}")
-				.AddRow(new Text("2. Inventory"), new Text($"4. test"), status)
+				.AddRow($"1. Search the area", $"3. {section.Connections[0].NextSection.Name}")
+				.AddRow(new Text("2. Inventory"), new Text($"4. {section.Connections[1].NextSection.Name}"), status)
 				.Expand();
 			}
 			

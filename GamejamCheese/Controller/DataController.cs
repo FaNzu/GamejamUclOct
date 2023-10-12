@@ -11,5 +11,6 @@ namespace GamejamCheese.Controller
 	public static class DataController
 	{
 		public static List<Item> Items { get; set; } = DataInitialiser.GenerateItems();
+		public static Section StartingSection { get; set; } = DataInitialiser.GenerateSections();
 	}
 }
