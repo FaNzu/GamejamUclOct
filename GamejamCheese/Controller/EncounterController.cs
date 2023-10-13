@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spectre.Console;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GamejamCheese.Controller
 {
@@ -100,7 +101,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
                     CombatDone = true;
-					Player.HighScore =+ 5;
+					Player.HighScore += 5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -118,6 +119,8 @@ namespace GamejamCheese.Controller
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
                     AnsiConsole.Write(new FigletText("your score: " + HighScoreText).Centered().Color(Color.White));
+					Console.ReadKey();
+					Environment.Exit(0);
                 }
 
             }
@@ -177,7 +180,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
 					CombatDone = true;
-                    Player.HighScore = +5;
+                    Player.HighScore += 5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -191,11 +194,15 @@ namespace GamejamCheese.Controller
                 if (Player.HP <= 0)
                 {
                     CombatDone = true;
+					//section controller boolisdone = true
+					//stops whole game loop
 					string HighScoreText = Player.HighScore.ToString();
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
                     AnsiConsole.Write(new FigletText("your score: "+HighScoreText).Centered().Color(Color.White));
-                }
+					Console.ReadLine();
+					Environment.Exit(0);
+				}
 
             }
 
@@ -233,6 +240,7 @@ namespace GamejamCheese.Controller
 					Player.PlayerInventory.Add(selectedItem);
 				}
 			}
+			Console.Clear();
 		}
 	}
 }
