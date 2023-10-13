@@ -12,58 +12,66 @@ namespace GamejamCheese.Controller
 {
 	public static class SectionController
 	{
-		public static void StartSection(Section section)
+		public static Section StartSection(Section section)
 		{
 			EncounterController encounterController = new EncounterController();
 			Random random = new Random();
 			int randomnumber = random.Next(0, 4);
+
 			switch (randomnumber)
 			{
 
 				case 0:
 					encounterController.StartBattle();
-					HandleChoices(SectionView.ShowAndReturnChoice(section), section);
 					break;
 				case 1:
 					encounterController.StarBattleArla();
-					HandleChoices(SectionView.ShowAndReturnChoice(section), section);
 					break;
 				case 2:
 					EncounterController.MeetVendor();
-					HandleChoices(SectionView.ShowAndReturnChoice(section), section);
 					break;
 				case 3:
-					HandleChoices(SectionView.ShowAndReturnChoice(section), section);
 					break;
 			}
+
+			Section? result = null;
+
+			while (result == null)
+			{
+				result = HandleChoices(SectionView.ShowAndReturnChoice(section), section);
+			}
+			return result;
 		}
 
-		private static void HandleChoices(int choice, Section section)
+		private static Section? HandleChoices(int choice, Section section)
 		{
+			Section? result = null;
 			switch (choice)
 			{
 				case 1:
-					//Implement section choice
 					string temp = SearchSection();
 					AnsiConsole.Clear();
 					Console.WriteLine(temp);
 					Console.ReadLine();
 					AnsiConsole.Clear();
-					StartSection(section.Connections[0].NextSection);
 					break;
 				case 2:
 					AnsiConsole.Clear();
 					InventoryController.Show();
 					AnsiConsole.Clear();
-					StartSection(section);
 					break;
 				case 3:
+					//Move to new section when result is false
 					AnsiConsole.Clear();
-					StartSection(section.Connections[0].NextSection);
+					result = section.Connections[0].NextSection;
 					break;
 				case 4:
+					//Move to new section when result is false
+					AnsiConsole.Clear();
+					result = section.Connections[1].NextSection;
 					break;
 			}
+			return result;
 		}
 		private static string SearchSection()
 		{
