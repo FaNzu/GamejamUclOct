@@ -238,6 +238,7 @@ namespace GamejamCheese.Controller
 					Player.PlayerInventory.Add(selectedItem);
 				}
 			}
+			Console.Clear();
 		}
 	}
 }
