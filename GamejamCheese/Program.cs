@@ -9,8 +9,7 @@ namespace GamejamCheese
 	{
 		static void Main(string[] args)
 		{
-			SectionController.StartSection(DataController.StartingSection);
-			Console.ReadLine();			
+			GameController.StartGame();
 		}
 	}
 }
