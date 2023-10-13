@@ -100,6 +100,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
                     CombatDone = true;
+					Player.HighScore =+ 5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -110,13 +111,15 @@ namespace GamejamCheese.Controller
                     Console.WriteLine("the enemy is attacking! "+"you take:" + EnemyRoll + " Damage!");
                     Player.HP -= EnemyRoll;
                 }
-                if (Player.HP <= 0) 
-                    {
+                if (Player.HP <= 0)
+                {
                     CombatDone = true;
+                    string HighScoreText = Player.HighScore.ToString();
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
-                    }
-                
+                    AnsiConsole.Write(new FigletText("your score: " + HighScoreText).Centered().Color(Color.White));
+                }
+
             }
             
         }
@@ -174,6 +177,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
 					CombatDone = true;
+                    Player.HighScore = +5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -184,8 +188,16 @@ namespace GamejamCheese.Controller
 					Console.WriteLine("the enemy is Talking about Arla buisness! " + "you take:" + EnemyRoll + " Damage!");
 					Player.HP -= EnemyRoll;
 				}
+                if (Player.HP <= 0)
+                {
+                    CombatDone = true;
+					string HighScoreText = Player.HighScore.ToString();
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
+                    AnsiConsole.Write(new FigletText("your score: "+HighScoreText).Centered().Color(Color.White));
+                }
 
-			}
+            }
 
 		}
 
