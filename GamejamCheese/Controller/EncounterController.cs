@@ -85,7 +85,7 @@ namespace GamejamCheese.Controller
                         break;
                 }
 
-                //Console.Clear();
+                
                 AnsiConsole.Clear();
                 Console.WriteLine("You rolled to atk: " + DiceRoll);
                 
