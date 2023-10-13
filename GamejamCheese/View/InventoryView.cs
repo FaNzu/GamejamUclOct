@@ -12,7 +12,14 @@ namespace GamejamCheese.View
 	{
 		public static void Show()
 		{
-			AnsiConsole.Prompt(GenerateMenu());
+			if (Player.PlayerInventory.Count == 0)
+			{
+				Console.WriteLine("You have nothing in you're inventory");
+			}
+			else
+			{
+				AnsiConsole.Prompt(GenerateMenu());
+			}
 		}
 
 
@@ -21,10 +28,17 @@ namespace GamejamCheese.View
 		{
 			var inventory = new SelectionPrompt<Item>()
 				.Title("Here is you're invetory")
-				.PageSize(Player.PlayerInventory.Count + 3)
 				.MoreChoicesText("Move up and down to navigate")
 				.AddChoices(Player.PlayerInventory);
 
+			if (Player.PlayerInventory.Count < 3)
+			{
+				inventory.PageSize(3);
+			}
+			else
+			{
+				inventory.PageSize(Player.PlayerInventory.Count);
+			}
 
 			return inventory;
 		}

@@ -16,6 +16,8 @@ namespace GamejamCheese.Models
 		public Modifier Modifier { get; set; }
 		public string? ImagePath { get; set; }
 
+		public Section() { }
+
 		public Section(string name, string description, string choice, Modifier modifier)
 		{
 			Name = name;
