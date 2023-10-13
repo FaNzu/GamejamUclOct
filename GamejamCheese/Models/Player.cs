@@ -9,8 +9,8 @@ namespace GamejamCheese.Models
     public static class Player
 	{
 		public static int HP { get; set; } = 50;
-		public static Item[] PlayerInventory { get; set; } = new Item[10];
-		public static Item[] PlayerGearSlots { get; set; } = new Item[5];
+		public static List<Item> PlayerInventory { get; set; } = new List<Item>();
+		public static List<Item> PlayerGearSlots { get; set; } = new List<Item>();
 		public static int O2 { get; set; } = 50;
 		public static int Fuel { get; set; } = 50;
 		public static int Coins { get; set; } = 0;
