@@ -85,7 +85,7 @@ namespace GamejamCheese.Controller
                         break;
                 }
 
-                //Console.Clear();
+                
                 AnsiConsole.Clear();
                 Console.WriteLine("You rolled to atk: " + DiceRoll);
                 
@@ -100,6 +100,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
                     CombatDone = true;
+					Player.HighScore =+ 5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -110,13 +111,15 @@ namespace GamejamCheese.Controller
                     Console.WriteLine("the enemy is attacking! "+"you take:" + EnemyRoll + " Damage!");
                     Player.HP -= EnemyRoll;
                 }
-                if (Player.HP <= 0) 
-                    {
+                if (Player.HP <= 0)
+                {
                     CombatDone = true;
+                    string HighScoreText = Player.HighScore.ToString();
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
-                    }
-                
+                    AnsiConsole.Write(new FigletText("your score: " + HighScoreText).Centered().Color(Color.White));
+                }
+
             }
             
         }
@@ -174,6 +177,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
 					CombatDone = true;
+                    Player.HighScore = +5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -184,41 +188,49 @@ namespace GamejamCheese.Controller
 					Console.WriteLine("the enemy is Talking about Arla buisness! " + "you take:" + EnemyRoll + " Damage!");
 					Player.HP -= EnemyRoll;
 				}
+                if (Player.HP <= 0)
+                {
+                    CombatDone = true;
+					string HighScoreText = Player.HighScore.ToString();
+                    AnsiConsole.Clear();
+                    AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
+                    AnsiConsole.Write(new FigletText("your score: "+HighScoreText).Centered().Color(Color.White));
+                }
 
-			}
+            }
 
 		}
 
 
-		public static void MeetVendor() // needs lots
+		public static void MeetVendor()
 		{
-			List<Item> allItems = DataInitialiser.GenerateItems();
 			List<Item> selectedItems = new List<Item>();
 			for (int i = 0; i < 4; i++)
 			{
-				selectedItems.Add(allItems[random.Next(allItems.Count())]);
+				selectedItems.Add(DataController.Items[random.Next(DataController.Items.Count())]);
 			}
 			AnsiConsole.Write(EncounterManager.CreateVendorTable(selectedItems));
-			var fruits = AnsiConsole.Prompt(
+			var boughtItems = AnsiConsole.Prompt(
 				new MultiSelectionPrompt<string>()
 					.Title("What are your [green]favorite fruits[/]?")
-					.MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
+					.MoreChoicesText($"[grey](You have {Player.Coins} coins to buy for)[/]")
 					.InstructionsText("[grey](Press [blue]<space>[/] to toggle a fruit, [green]<enter>[/] to accept)[/]")
 					.AddChoices(new[]
 					{
-						$"{selectedItems[0]}", $"{selectedItems[1]}",$"{selectedItems[2]}",$"{selectedItems[3]}",$"None"
+						$"1: {selectedItems[0]}", $"2: {selectedItems[1]}",$"3: {selectedItems[2]}",$"4: {selectedItems[3]}",$"None"
 					}));
-			if (fruits.Contains("None"))
+			if (boughtItems.Contains("None"))
 			{
 				Console.WriteLine("You bought nothing");
 			}
 			else
 			{
 
-				foreach (var fruit in fruits)
+				foreach (var itemIndex in boughtItems.Select(fruit => int.Parse(fruit.Substring(0, 1)) - 1))
 				{
-					AnsiConsole.WriteLine(fruit);
-					//add items to player inventory
+					var selectedItem = selectedItems[itemIndex];
+					AnsiConsole.WriteLine($"{selectedItem}");
+					Player.PlayerInventory.Add(selectedItem);
 				}
 			}
 		}

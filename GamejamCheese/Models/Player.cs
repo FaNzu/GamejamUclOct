@@ -14,5 +14,7 @@ namespace GamejamCheese.Models
 		public static int O2 { get; set; } = 50;
 		public static int Fuel { get; set; } = 50;
 		public static int Coins { get; set; } = 0;
+
+		public static int HighScore { get; set;} = 0;
 	}
 }
