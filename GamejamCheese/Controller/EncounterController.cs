@@ -100,7 +100,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
                     CombatDone = true;
-					Player.HighScore =+ 5;
+					Player.HighScore += 5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
@@ -177,7 +177,7 @@ namespace GamejamCheese.Controller
                      * else ask to swap item
                      */
 					CombatDone = true;
-                    Player.HighScore = +5;
+                    Player.HighScore += 5;
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You won the battle!").Centered().Color(Color.Yellow));
                 }
