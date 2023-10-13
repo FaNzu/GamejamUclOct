@@ -61,14 +61,17 @@ namespace GamejamCheese.Controller
 					AnsiConsole.Clear();
 					break;
 				case 3:
-					//Move to new section when result is false
-					AnsiConsole.Clear();
-					result = section.Connections[0].NextSection;
-					break;
 				case 4:
+				case 5:
 					//Move to new section when result is false
 					AnsiConsole.Clear();
-					result = section.Connections[1].NextSection;
+					if (section.Connections.Count - 1 < choice - 3)
+						break;
+
+					if (section.Connections[choice - 3].NextSection.Name == section.Name)
+						result = section.Connections[choice - 3].LastSection;
+					else
+						result = section.Connections[choice - 3].NextSection;
 					break;
 			}
 			return result;

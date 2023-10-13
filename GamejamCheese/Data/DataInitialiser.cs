@@ -89,76 +89,82 @@ namespace GamejamCheese.Data
             MoonOrbitToMoonSurface.LastSection = MoonOrbit;
             MoonOrbitToMoonSurface.IsVisible = true;
 
-            MoonOrbit.Connections.Add(MoonOrbitToMoonSurface);
+            insterConnect(MoonOrbitToMoonSurface);
 
             MoonOrbitToSpaceDiner.NextSection = SpaceDiner;
             MoonOrbitToSpaceDiner.LastSection = MoonOrbit;
             MoonOrbitToSpaceDiner.IsVisible = true;
 
-            MoonOrbit.Connections.Add(MoonOrbitToSpaceDiner);
+			insterConnect(MoonOrbitToSpaceDiner);
 
             MoonSurfaceToMoonCrater1.NextSection = MoonCrater1;
-            MoonSurfaceToMoonCrater1.NextSection = MoonSurface;
+            MoonSurfaceToMoonCrater1.LastSection = MoonSurface;
             MoonSurfaceToMoonCrater1.IsVisible = true;
 
-            MoonSurface.Connections.Add(MoonSurfaceToMoonCrater1);
+			insterConnect(MoonSurfaceToMoonCrater1);
 
             MoonSurfaceToMoonCrater2.NextSection = MoonCrater2;
             MoonSurfaceToMoonCrater2.LastSection = MoonSurface;
             MoonSurfaceToMoonCrater2.IsVisible = true;
 
-            MoonSurface.Connections.Add(MoonSurfaceToMoonCrater2);
+            insterConnect(MoonSurfaceToMoonCrater2);
 
             MoonCrater1ToMoonRuin.NextSection = MoonRuin;
             MoonCrater1ToMoonRuin.LastSection = MoonCrater1;
             MoonCrater1ToMoonRuin.IsVisible = true;
 
-            MoonCrater1.Connections.Add(MoonCrater1ToMoonRuin);
+            insterConnect(MoonCrater1ToMoonRuin);
 
             MoonRuinToMoonRuinRoom1.NextSection = MoonRuinRoom1;
             MoonRuinToMoonRuinRoom1.LastSection = MoonRuin;
             MoonRuinToMoonRuinRoom1.IsVisible = true;
 
-            MoonRuin.Connections.Add(MoonRuinToMoonRuinRoom1);
+            insterConnect(MoonRuinToMoonRuinRoom1);
 
             MoonRuinToMoonRuin2.NextSection = MoonRuinRoom2;
             MoonRuinToMoonRuin2.LastSection = MoonRuin;
             MoonRuinToMoonRuin2.IsVisible = true;
 
-            MoonRuin.Connections.Add(MoonRuinToMoonRuin2);
+            insterConnect(MoonRuinToMoonRuin2);
 
             MoonOrbitToMarsOrbit.NextSection = MarsOrbit;
             MoonOrbitToMarsOrbit.LastSection = MoonOrbit;
             MoonOrbitToMarsOrbit.IsVisible = true;
 
-            MoonOrbit.Connections.Add(MoonOrbitToMarsOrbit);
+            insterConnect(MoonOrbitToMarsOrbit);
 
             MarsOrbitToMartianCapital.NextSection = MartianCapital;
             MarsOrbitToMartianCapital.LastSection = MarsOrbit;
             MarsOrbitToMartianCapital.IsVisible = true;
 
-            MarsOrbit.Connections.Add(MarsOrbitToMartianCapital);
+            insterConnect(MarsOrbitToMartianCapital);
 
             MartianCapitalToMartianBar.NextSection = MartianBar;
             MartianCapitalToMartianBar.LastSection = MartianCapital;
             MartianCapitalToMartianBar.IsVisible = true;
 
-            MartianCapital.Connections.Add(MartianCapitalToMartianBar);
+            insterConnect(MartianCapitalToMartianBar);
 
             MartianCapitalToMilkMafiaHQ.NextSection = MilkMafiaHQ;
             MartianCapitalToMilkMafiaHQ.LastSection = MartianCapital;
             MartianCapitalToMilkMafiaHQ.IsVisible = true;
 
-            MartianCapital.Connections.Add(MartianCapitalToMilkMafiaHQ);
+            insterConnect(MartianCapitalToMilkMafiaHQ);
 
             MartianCapitalToCheesePyramid.NextSection = CheesePyramid;
             MartianCapitalToCheesePyramid.LastSection = MartianCapital;
-            MartianCapitalToMilkMafiaHQ.IsVisible = true;
+            MartianCapitalToCheesePyramid.IsVisible = true;
 
-            MartianCapital.Connections.Add(MartianCapitalToCheesePyramid);
+            insterConnect(MartianCapitalToCheesePyramid);
             #endregion
             //Adds Sections to list
 			return MoonOrbit;
         }
+
+        static void insterConnect (Connection con)
+        {
+            con.NextSection.Connections.Add(con);
+			con.LastSection.Connections.Add(con);
+		}
 	}
 }

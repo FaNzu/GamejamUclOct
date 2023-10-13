@@ -16,7 +16,7 @@ namespace GamejamCheese.View
 		public static int ShowAndReturnChoice(Section section)
 		{
 			AnsiConsole.Write(StartMenu(section));
-			int result = AnsiConsole.Prompt(MakeChoice());
+			int result = AnsiConsole.Prompt(MakeChoice(section));
 			return result;
 		}
 		public static Table StartMenu(Section section)
@@ -53,9 +53,36 @@ namespace GamejamCheese.View
 				.AddColumn("Actions")
 				.AddColumn("Move")
 				.AddColumn("Status")
-				.AddRow($"1. Search the area", $"3. {section.Connections[0].NextSection.Name}")
-				.AddRow(new Text("2. Inventory"), new Text($"4. {section.Connections[1].NextSection.Name}"), status)
 				.Expand();
+
+				if (section.Connections.Count >= 1)
+				{
+					Section connection= section.Connections[0].NextSection;
+					if (connection.Name == section.Name)
+						connection = section.Connections[0].LastSection;
+
+					playerMenu.AddRow($"1. Search the area", $"3. {connection.Name}");
+				} else
+					playerMenu.AddRow($"1. Search the area");
+
+				if (section.Connections.Count >= 2)
+				{
+					Section connection = section.Connections[1].NextSection;
+					if (connection.Name == section.Name)
+						connection = section.Connections[1].LastSection;
+
+					playerMenu.AddRow(new Text("2. Inventory"), new Text($"4. {connection.Name}"), status);
+				} else
+					playerMenu.AddRow($"2. Inventory");
+
+				if (section.Connections.Count >= 3)
+				{
+					Section? connection = section.Connections[2].NextSection;
+					if (connection.Name == section.Name)
+						connection = section.Connections[2].LastSection;
+
+					playerMenu.AddRow(new Text(""), new Text($"5. {connection.Name}"), status);
+				}
 			}
 			
 
@@ -69,12 +96,15 @@ namespace GamejamCheese.View
 
 			return result;
 		}
-		public static SelectionPrompt<int> MakeChoice()
+		public static SelectionPrompt<int> MakeChoice(Section section)
 		{
-			int[] choices = { 1, 2, 3, 4 };
+			List<int> choices = new List<int>();
+			for (int i = 1; i <= section.Connections.Count + 2; i++)
+				choices.Add(i);
+
 			var result = new SelectionPrompt<int>()
 				.AddChoices(choices)
-				.PageSize(choices.Length)
+				.PageSize(choices.Count)
 				.Title("Make a choice");
 
 			return result;
