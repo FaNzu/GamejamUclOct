@@ -119,6 +119,8 @@ namespace GamejamCheese.Controller
                     AnsiConsole.Clear();
                     AnsiConsole.Write(new FigletText("You Lost the battle!").Centered().Color(Color.White));
                     AnsiConsole.Write(new FigletText("your score: " + HighScoreText).Centered().Color(Color.White));
+					Console.ReadKey();
+					Environment.Exit(0);
                 }
 
             }
